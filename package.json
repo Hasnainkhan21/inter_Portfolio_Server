@@ -11,7 +11,9 @@
   "license": "ISC",
   "description": "Portfolio backend server using Node.js and Express",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
-    "mongoose": "^8.16.1"
+    "mongoose": "^8.16.1",
+    "multer": "^2.0.1"
   }
 }

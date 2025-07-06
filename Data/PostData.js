@@ -8,18 +8,28 @@ exports.savePortfolioData = async (req, res) => {
         await User.deleteMany({});
         await Project.deleteMany({});
 
-        // 👤 Save user data
+        // 👤 Save user
         const user = new User({
             name: portfolioData.name,
             email: portfolioData.email,
             phone: portfolioData.phone,
             role: portfolioData.role,
-            skills: portfolioData.skills
+            skills: portfolioData.skills,
+            profileImage: portfolioData.profileImage,
+            coverImage: portfolioData.coverImage
         });
         await user.save();
 
-        // 💼 Save projects
-        await Project.insertMany(portfolioData.projects);
+        // 💼 Save all projects (including image + technologies)
+        const formattedProjects = portfolioData.projects.map(project => ({
+            title: project.title,
+            description: project.description,
+            link: project.link || '',
+            technologies: project.technologies || [],
+            image: project.image || ''
+        }));
+
+        await Project.insertMany(formattedProjects);
 
         res.status(201).json({ message: 'All portfolio data saved successfully.' });
     } catch (error) {
