@@ -1,6 +1,6 @@
 module.exports = {
   profileImage: "uploads/dp.jpg",        // ✅ from your Uploads folder
-  coverImage: "uploads/cover.jpg",       // ✅ add this if needed
+  coverImage: "uploads/cover.jpg",      
   name: "Muhammad Hasnain",
   email: "hasnainmuhammad8425@gmail.com",
   phone: "0312-1234567",

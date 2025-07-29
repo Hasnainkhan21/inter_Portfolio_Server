@@ -8,7 +8,7 @@ exports.savePortfolioData = async (req, res) => {
         await User.deleteMany({});
         await Project.deleteMany({});
 
-        // 👤 Save user
+        //Save user
         const user = new User({
             name: portfolioData.name,
             email: portfolioData.email,
@@ -20,7 +20,7 @@ exports.savePortfolioData = async (req, res) => {
         });
         await user.save();
 
-        // 💼 Save all projects (including image + technologies)
+        //Save all projects
         const formattedProjects = portfolioData.projects.map(project => ({
             title: project.title,
             description: project.description,
