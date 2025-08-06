@@ -1,0 +1,22 @@
+# Don't track environment variables
+.env
+
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS system files
+.DS_Store
+Thumbs.db
+
+# Optional build directories
+dist/
+build/
+
+# IDE/editor folders
+.vscode/
+.idea/
