@@ -1,11 +1,10 @@
-const DB_URI = 'mongodb+srv://Admin:Admin12345@cluster0.rt61viy.mongodb.net/portfolioDB';
-
 const mongoose = require('mongoose');
-
+require('dotenv').config();
+const DB_URI = process.env.MONGO_URI
 const connectDB = async () => {
-    try {
+    try { 
         await mongoose.connect(DB_URI);
-        console.log('✅ Connected to MongoDB successfully');
+        console.log('✅ Connected to MongoDB successfully yes successfully');
     } catch (error) {
         console.error('❌ Error connecting to MongoDB:', error);
     }
