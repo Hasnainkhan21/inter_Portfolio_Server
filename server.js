@@ -6,31 +6,28 @@ const connectDB = require('./Configurations/db');
 const UserRoutes = require('./Router/portfolioRoutes');
 
 const app = express();
-
-// Connect to Database
 connectDB();
 
-// CORS Configuration (simplified)
 app.use(cors({
-  origin: ['https://intern-portfolio-rouge.vercel.app', 'http://localhost:3000'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  origin: [
+    'https://intern-portfolio-rouge.vercel.app',
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 
-// Middleware
 app.use(express.json());
 
 // Root route
 app.get('/', (req, res) => {
-  res.send('Portfolio Backend is Running');
+  res.json({ status: 'API is running' });
 });
 
-// API Routes
-app.use('/api/v0/users', UserRoutes);
-
+app.use('/', UserRoutes);  
 // Static files
 app.use('/uploads', express.static(path.join(__dirname, 'Uploads')));
 
-// Start server
 const PORT = process.env.PORT || 3081;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
