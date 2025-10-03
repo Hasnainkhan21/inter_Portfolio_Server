@@ -38,13 +38,16 @@ app.get("/getdata", (req, res) => {
 });
 app.post("/postdata", (req, res) => {
   res.json({ success: true, message: "Data posted to backend!", data: req.body });
-}
+});
+
 app.post("/postmessage", (req, res) => {
   res.json({ success: true, message: "Message posted to backend!", data: req.body });
-}));
+});
+
 app.get("/getmessages", (req, res) => {
   res.json({ success: true, message: "Messages coming from backend!" });
 });
+
 
 // ✅ Export app for Vercel (NO app.listen here)
 module.exports = app;
