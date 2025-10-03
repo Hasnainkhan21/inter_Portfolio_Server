@@ -29,6 +29,4 @@ app.use('/', UserRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'Uploads')));
 
 const PORT = process.env.PORT || 3081;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+export default app;
