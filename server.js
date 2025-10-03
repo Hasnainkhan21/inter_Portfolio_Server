@@ -30,8 +30,13 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/", UserRoutes);
 
+
 // Static files
 app.use("/uploads", express.static(path.join(__dirname, "Uploads")));
+app.get("/getdata", (req, res) => {
+  res.json({ success: true, message: "Data coming from backend!" });
+});
+
 
 // ✅ Export app for Vercel (NO app.listen here)
 module.exports = app;
