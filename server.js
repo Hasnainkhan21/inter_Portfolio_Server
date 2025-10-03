@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: [
       "https://intern-portfolio-rouge.vercel.app", // frontend live
-      "http://localhost:3000" // dev frontend
+      "http://localhost:3001" // dev frontend
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
