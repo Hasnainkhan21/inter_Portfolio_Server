@@ -1,32 +1,37 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-const path = require('path');
-const connectDB = require('./Configurations/db');
-const UserRoutes = require('./Router/portfolioRoutes');
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const path = require("path");
+const connectDB = require("./Configurations/db");
+const UserRoutes = require("./Router/portfolioRoutes");
 
 const app = express();
 connectDB();
 
-app.use(cors({
-  origin: [
-    'https://intern-portfolio-rouge.vercel.app',
-    'http://localhost:5173'
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+// ✅ Allow frontend domain + localhost for dev
+app.use(
+  cors({
+    origin: [
+      "https://intern-portfolio-rouge.vercel.app", // frontend live
+      "http://localhost:3000" // dev frontend
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
 // Root route
-app.get('/', (req, res) => {
-  res.json({ status: 'API is running' });
+app.get("/", (req, res) => {
+  res.json({ status: "API is running" });
 });
 
-app.use('/', UserRoutes);  
-// Static files
-app.use('/uploads', express.static(path.join(__dirname, 'Uploads')));
+// Routes
+app.use("/", UserRoutes);
 
-const PORT = process.env.PORT || 3081;
-export default app;
+// Static files
+app.use("/uploads", express.static(path.join(__dirname, "Uploads")));
+
+// ✅ Export app for Vercel (NO app.listen here)
+module.exports = app;
